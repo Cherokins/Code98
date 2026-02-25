@@ -2,9 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
-    <title> CODE 98 FIFO · intelligent engagement </title>
-    <!-- modern system fonts + fallback -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code98 · Automated Customer Engagement</title>
     <style>
         * {
             margin: 0;
@@ -12,523 +11,674 @@
             box-sizing: border-box;
         }
 
-        :root {
-            --space-unit: 0.25rem;
-            --container-margin: clamp(1rem, 5vw, 4rem);
-            --primary: #0c47f0;
-            --primary-glow: #3b6eff;
-            --deep-bg: #f6f9fe;
-            --card-bg: rgba(255,255,255,0.85);
-            --glass-edge: rgba(255,255,255,0.5);
-            --text-head: #0b1622;
-            --text-body: #253746;
-            --accent-soft: #d9e6ff;
-            --fifo-accent: #e0b0ff;
-            --border-light: #eef2f8;
-            --shadow-m: 0 20px 35px -10px rgba(0,35,90,0.12), 0 2px 8px -4px rgba(0,0,0,0.02);
-            --shadow-l: 0 30px 50px -20px rgba(0,20,80,0.25);
-            --shadow-inset: inset 0 1px 3px rgba(255,255,255,0.9);
-        }
-
         html {
             scroll-behavior: smooth;
-            height: 100%;
         }
 
         body {
-            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-            background: var(--deep-bg);
-            color: var(--text-body);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: #f9fafc;
+            color: #111827;
             line-height: 1.5;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            backdrop-filter: blur(2px);
-            -webkit-font-smoothing: antialiased;
         }
 
-        /* ultra‑responsive container */
-        .flex-container {
-            max-width: 1400px;
+        .container {
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 var(--container-margin);
-            width: 100%;
+            padding: 2rem 1.5rem;
         }
 
-        /* modern glass / blur elements */
-        .glass-panel {
-            background: var(--card-bg);
-            backdrop-filter: blur(12px) saturate(180%);
-            -webkit-backdrop-filter: blur(12px) saturate(180%);
-            border: 1px solid var(--glass-edge);
-            box-shadow: var(--shadow-m), var(--shadow-inset);
-        }
-
-        /* header : lightweight, fluid */
-        .nav-bar {
+        /* header / nav */
+        .navbar {
             display: flex;
-            flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
             padding: 1.2rem 0;
-            gap: 1rem 2rem;
-        }
-
-        .logo-code {
-            font-size: clamp(1.6rem, 5vw, 2.2rem);
-            font-weight: 800;
-            letter-spacing: -0.04em;
-            background: linear-gradient(145deg, #0c2d7a, #2d54d4);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            display: flex;
-            align-items: center;
-            gap: 0.2rem;
-        }
-
-        .logo-code span {
-            background: linear-gradient(145deg, #a64aff, #4a3aff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            font-weight: 900;
-        }
-
-        .nav-links-row {
-            display: flex;
-            gap: clamp(1rem, 3vw, 3rem);
-            font-weight: 550;
+            border-bottom: 1px solid #e5e7eb;
             flex-wrap: wrap;
         }
 
-        .nav-links-row a {
-            text-decoration: none;
-            color: var(--text-head);
-            cursor: pointer;
-            transition: 0.2s ease;
-            border-bottom: 2px solid transparent;
-            padding-bottom: 4px;
-            font-size: 1.05rem;
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #2563eb, #1e40af);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        .nav-links-row a:hover {
-            border-bottom-color: var(--primary);
-            color: var(--primary);
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            font-weight: 500;
+            color: #374151;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            color: #2563eb;
         }
 
         .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--primary);
+            display: inline-block;
+            background: #2563eb;
             color: white;
             font-weight: 600;
-            padding: 0.7rem 1.9rem;
-            border-radius: 60px;
+            padding: 0.75rem 2rem;
+            border-radius: 40px;
             text-decoration: none;
+            transition: background 0.2s, transform 0.1s;
             border: none;
             cursor: pointer;
-            box-shadow: 0 10px 18px -8px var(--primary);
-            transition: 0.15s ease;
-            font-size: 1rem;
-            line-height: 1.2;
-            white-space: nowrap;
+            box-shadow: 0 4px 8px rgba(37, 99, 235, 0.2);
         }
+
         .btn:hover {
-            background: #183cd0;
-            transform: scale(1.02) translateY(-2px);
-            box-shadow: 0 18px 25px -12px #0c47f0;
+            background: #1d4ed8;
+            transform: scale(1.02);
         }
+
         .btn-outline {
             background: transparent;
-            border: 1.5px solid var(--primary);
-            color: var(--primary);
+            border: 1.5px solid #2563eb;
+            color: #2563eb;
             box-shadow: none;
-            backdrop-filter: blur(4px);
         }
+
         .btn-outline:hover {
-            background: rgba(12, 71, 240, 0.08);
-            border-color: #0c47f0;
-            transform: scale(1.02);
-            box-shadow: 0 8px 12px -8px #0c47f0;
+            background: #eef2ff;
         }
 
-        /* hero zone */
-        .hero-twin {
+        /* hero */
+        .hero {
             display: flex;
-            flex-wrap: wrap;
             align-items: center;
-            gap: 3rem 4rem;
-            margin: 3rem 0 6rem;
-        }
-        .hero-twin > * {
-            flex: 1 1 340px;
+            justify-content: space-between;
+            gap: 3rem;
+            margin: 3rem 0 5rem;
+            flex-wrap: wrap;
         }
 
-        .chip-glow {
-            background: rgba(12, 71, 240, 0.12);
-            backdrop-filter: blur(8px);
-            padding: 0.4rem 1.2rem;
-            border-radius: 100px;
+        .hero-text {
+            flex: 1 1 400px;
+        }
+
+        .hero-badge {
+            background: #dbeafe;
+            color: #1e40af;
             font-weight: 600;
             font-size: 0.9rem;
-            color: #0c2d7a;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
             display: inline-block;
-            margin-bottom: 1.3rem;
-            border: 1px solid rgba(255,255,255,0.7);
+            margin-bottom: 1.2rem;
         }
 
-        .hero-title {
-            font-size: clamp(2.4rem, 8vw, 4rem);
+        .hero-text h1 {
+            font-size: 3.2rem;
             font-weight: 800;
-            line-height: 1.1;
-            letter-spacing: -0.03em;
-            color: var(--text-head);
-            margin-bottom: 1.3rem;
+            line-height: 1.2;
+            letter-spacing: -1px;
+            margin-bottom: 1.5rem;
+            color: #0b1120;
         }
-        .hero-title span {
-            background: linear-gradient(130deg, #0c47f0, #9d4aff);
+
+        .hero-text h1 span {
+            background: linear-gradient(to right, #2563eb, #7c3aed);
             -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             background-clip: text;
-            color: transparent;
-            display: inline-block;
         }
 
-        .hero-paragraph {
-            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
-            color: #2d3d57;
-            max-width: 600px;
-            margin-bottom: 2.2rem;
-            font-weight: 400;
+        .hero-text p {
+            font-size: 1.2rem;
+            color: #4b5563;
+            max-width: 550px;
+            margin-bottom: 2.5rem;
         }
 
-        .graphic-card {
-            background: rgba(255,255,255,0.7);
-            backdrop-filter: blur(18px);
-            border-radius: 56px;
-            padding: 2rem 1.8rem;
-            border: 1px solid white;
-            box-shadow: var(--shadow-l);
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
         }
 
-        .pulse-fifo {
+        .hero-graphic {
+            flex: 1 1 300px;
+            background: linear-gradient(145deg, #eef2ff, #ffffff);
+            border-radius: 48px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px -15px rgba(0,20,80,0.15);
+            border: 1px solid #e0e7ff;
+            text-align: center;
+        }
+
+        .graphic-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .graphic-pulse {
             display: flex;
             justify-content: center;
             gap: 2rem;
             margin: 2rem 0;
         }
-        .fifo-dot {
-            width: 22px;
-            height: 22px;
-            background: #0c47f0;
-            border-radius: 10px;  /* soft square – FIFO box */
-            animation: fifoPulse 2s infinite;
-            transform-origin: center;
-            box-shadow: 0 0 0 3px rgba(12,71,240,0.2);
-        }
-        .fifo-dot:nth-child(2) { animation-delay: 0.25s; background: #7a4aff; }
-        .fifo-dot:nth-child(3) { animation-delay: 0.5s; background: #b64aff; }
-        @keyframes fifoPulse {
-            0% { opacity: 0.7; transform: scale(1) rotate(0deg); border-radius: 10px; }
-            50% { opacity: 1; transform: scale(1.25) rotate(6deg); border-radius: 16px; background: #3b6eff; }
-            100% { opacity: 0.7; transform: scale(1) rotate(0deg); border-radius: 10px; }
+
+        .pulse-dot {
+            width: 16px;
+            height: 16px;
+            background: #2563eb;
+            border-radius: 50%;
+            animation: pulse 1.8s infinite;
         }
 
-        .stat-fifo {
+        .pulse-dot:nth-child(2) { animation-delay: 0.3s; }
+        .pulse-dot:nth-child(3) { animation-delay: 0.6s; }
+
+        @keyframes pulse {
+            0% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.5); background: #7c3aed; }
+            100% { opacity: 0.4; transform: scale(1); }
+        }
+
+        .stat-row {
             display: flex;
             justify-content: space-around;
             margin-top: 2rem;
         }
-        .stat-item h3 {
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: #02122c;
-            line-height: 1;
-        }
-        .stat-item p {
-            color: #44556b;
-            font-weight: 500;
-        }
 
-        /* features grid – ultra‑adaptive */
-        .section-head {
+        .stat-item {
             text-align: center;
-            margin: 4rem 0 2.5rem;
-        }
-        .section-head h2 {
-            font-size: clamp(2rem, 5vw, 3rem);
-            font-weight: 750;
-            color: #0b1622;
-        }
-        .section-head p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0.7rem auto 0;
-            color: #40536b;
         }
 
-        .grid-auto {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
-            gap: 2rem;
-            margin: 3rem 0 5rem;
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #0f172a;
         }
 
-        .fifo-card {
-            background: white;
-            border-radius: 2.5rem;
-            padding: 2rem;
-            border: 1px solid var(--border-light);
-            box-shadow: var(--shadow-m);
-            transition: all 0.2s ease;
-        }
-        .fifo-card:hover {
-            border-color: var(--primary-glow);
-            box-shadow: 0 30px 40px -20px #0c47f0;
-            transform: translateY(-6px) scale(1.01);
+        .stat-label {
+            font-size: 0.9rem;
+            color: #6b7280;
         }
 
-        .card-icon {
+        /* features */
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
             font-size: 2.5rem;
+            font-weight: 700;
+            color: #0b1120;
+        }
+
+        .section-title p {
+            color: #6b7280;
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 1rem auto 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 32px;
+            padding: 2rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.02);
+            border: 1px solid #f0f2f5;
+            transition: transform 0.2s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: #b9d0ff;
+        }
+
+        .feature-icon {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+
+        .feature-card p {
+            color: #4b5563;
+        }
+
+        /* product / subscription */
+        .product-showcase {
+            background: #0f172a;
+            color: white;
+            border-radius: 48px;
+            padding: 3.5rem 3rem;
+            margin: 5rem 0;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+        }
+
+        .product-showcase h2 {
+            font-size: 2.4rem;
+            font-weight: 700;
             margin-bottom: 1rem;
         }
 
-        /* dark pricing card */
-        .pricing-dark {
-            background: #0d192b;
-            border-radius: 4rem;
-            padding: 3.5rem 3rem;
-            margin: 5rem 0;
-            color: white;
-            box-shadow: var(--shadow-l);
-            border: 1px solid #1f324b;
+        .product-showcase .subhead {
+            color: #b9c7e0;
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin-bottom: 2.5rem;
         }
 
-        .plan-card-modern {
-            background: #142439;
-            border-radius: 2.8rem;
+        .subscription-plan {
+            background: #1e293b;
+            border-radius: 32px;
             padding: 2rem;
-            max-width: 380px;
-            border: 1px solid #2f4665;
-            backdrop-filter: blur(6px);
+            display: inline-block;
+            min-width: 280px;
+            border: 1px solid #334155;
         }
 
-        .price-large {
-            font-size: 3.3rem;
-            font-weight: 800;
-            line-height: 1;
-        }
-
-        /* contact modern */
-        .contact-modern {
-            background: white;
-            border-radius: 4rem;
-            padding: 3rem 2rem;
-            margin: 5rem 0;
-            box-shadow: var(--shadow-m);
-            border: 1px solid #ffffff;
-            text-align: center;
-        }
-
-        .flex-contact-row {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 2.5rem 3.5rem;
-            margin: 2rem 0 1.5rem;
-        }
-        .contact-chip {
-            background: #f0f5ff;
-            border-radius: 60px;
-            padding: 0.7rem 1.8rem;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.8rem;
-            font-size: 1.1rem;
-            border: 1px solid #cedcf0;
-        }
-
-        .badge-outline {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(8px);
-            border-radius: 40px;
-            padding: 0.3rem 1.3rem;
-            color: #ccdbf5;
-            border: 1px solid #32507c;
+        .plan-name {
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             font-size: 0.9rem;
         }
 
-        .footer-fluid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            gap: 1.5rem;
-            margin: 4rem 0 2rem;
-            padding-top: 2rem;
-            border-top: 1px solid #cfdeff;
+        .plan-price {
+            font-size: 3rem;
+            font-weight: 800;
+            margin: 0.5rem 0 1rem;
         }
 
-        /* modal modern */
-        .modal-overlay {
+        .plan-price span {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #94a3b8;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .plan-features li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #334155;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .plan-features li:last-child { border: none; }
+
+        .pill-badge {
+            background: #2563eb;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        /* contact section */
+        .contact-section {
+            background: white;
+            border-radius: 48px;
+            padding: 3rem;
+            margin: 4rem 0;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.02);
+            border: 1px solid #e5e7eb;
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #0b1120;
+        }
+
+        .contact-section p {
+            color: #4b5563;
+            max-width: 500px;
+            margin: 0 auto 2rem;
+        }
+
+        .contact-details {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-item span {
+            font-weight: 500;
+            color: #1f2937;
+        }
+
+        .notice-badge {
+            background: #f3f4f6;
+            padding: 0.5rem 1.5rem;
+            border-radius: 40px;
+            font-size: 0.95rem;
+            color: #4b5563;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        /* footer / contact */
+        .footer {
+            margin-top: 5rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+            color: #6b7280;
+        }
+
+        .footer a {
+            color: #374151;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: #2563eb;
+        }
+
+        .contact-line {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 640px) {
+            .hero-text h1 { font-size: 2.4rem; }
+            .navbar { flex-direction: column; gap: 1rem; }
+            .nav-links { gap: 1.5rem; }
+        }
+
+        /* modal styles for sign in */
+        .modal {
             display: none;
             position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.2);
-            backdrop-filter: blur(12px);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
             align-items: center;
             justify-content: center;
             z-index: 1000;
         }
-        .modal-overlay.active {
+
+        .modal.active {
             display: flex;
         }
-        .modal-glass {
-            background: rgba(255,255,255,0.9);
-            backdrop-filter: blur(24px);
-            border-radius: 60px;
-            padding: 2.5rem 2rem;
-            max-width: 440px;
+
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 32px;
+            max-width: 400px;
             width: 90%;
-            border: 1px solid white;
-            box-shadow: 0 50px 70px -20px #0a1b3a;
+            text-align: center;
         }
 
-        /* responsive micro fixes */
-        @media (max-width: 480px) {
-            .nav-bar {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            .nav-links-row {
-                justify-content: center;
-            }
-            .btn {
-                width: 100%;
-                text-align: center;
-            }
+        .modal-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .modal-content p {
+            color: #6b7280;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-close {
+            background: #e5e7eb;
+            color: #1f2937;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
-    <div class="flex-container">
-        <!-- header with CODE 98 FIFO naming -->
-        <nav class="nav-bar">
-            <div class="logo-code">CODE <span>98</span> <span style="font-size:0.7em; background:none; color:#152e5c;"> FIFO</span></div>
-            <div class="nav-links-row">
-                <a onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})">platform</a>
-                <a onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">pricing</a>
-                <a onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">contact</a>
+    <div class="container">
+        <!-- header -->
+        <nav class="navbar">
+            <div class="logo">Code98</div>
+            <div class="nav-links">
+                <a onclick="document.getElementById('features').scrollIntoView({behavior: 'smooth'})">Platform</a>
+                <a onclick="document.getElementById('pricing').scrollIntoView({behavior: 'smooth'})">Pricing</a>
+                <a onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Contact</a>
             </div>
-            <a class="btn" style="cursor:pointer;" onclick="showModal('signinModal')">sign in →</a>
+            <a class="btn" style="padding: 0.5rem 1.8rem; cursor: pointer;" onclick="showSignInModal()">Sign in</a>
         </nav>
 
-        <!-- hero with pulse / FIFO identity -->
-        <div class="hero-twin">
-            <div>
-                <div class="chip-glow">⚡ FIFO engine · 98th code</div>
-                <h1 class="hero-title">Every M‑Pesa flow becomes <span>a smart queue</span></h1>
-                <p class="hero-paragraph">CODE 98 FIFO hooks into your Till, processes payments in strict order, and triggers instant rewards — loyalty without latency.</p>
-                <div style="display:flex; gap:1rem; flex-wrap:wrap;">
-                    <a class="btn" onclick="showModal('comingModal')">Start 30‑day trial →</a>
-                    <a class="btn btn-outline" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Talk to devs</a>
+        <!-- hero -->
+        <div class="hero">
+            <div class="hero-text">
+                <div class="hero-badge">⚡ automated · compliant · real-time</div>
+                <h1>Turn every M-Pesa payment into <span>a customer engagement</span></h1>
+                <p>Code98 is a subscription platform that helps Kenyan businesses automate rewards, loyalty payouts, and engagement flows directly through their Till.</p>
+                <div class="hero-cta">
+                    <a class="btn" onclick="showComingSoon()">Start free trial →</a>
+                    <a class="btn btn-outline" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Talk to us</a>
                 </div>
             </div>
-            <div class="graphic-card">
-                <div style="font-size:2.5rem; text-align:center; filter:drop-shadow(0 4px 4px rgba(0,0,0,0.05));">📲 ⇄ 98 FIFO</div>
-                <div class="pulse-fifo">
-                    <div class="fifo-dot"></div>
-                    <div class="fifo-dot"></div>
-                    <div class="fifo-dot"></div>
+            <div class="hero-graphic">
+                <div class="graphic-icon">📱 ↯ 💳</div>
+                <div class="graphic-pulse">
+                    <div class="pulse-dot"></div>
+                    <div class="pulse-dot"></div>
+                    <div class="pulse-dot"></div>
                 </div>
-                <div class="stat-fifo">
-                    <div class="stat-item"><h3>198ms</h3><p>avg. deque</p></div>
-                    <div class="stat-item"><h3>99.94%</h3><p>uptime</p></div>
+                <div class="stat-row">
+                    <div class="stat-item">
+                        <div class="stat-number">280ms</div>
+                        <div class="stat-label">avg. response</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">99.9%</div>
+                        <div class="stat-label">uptime</div>
+                    </div>
                 </div>
-                <p style="color:#0c47f0; font-weight:600; margin-top:1.5rem;">⚡ 8.4k+ FIFO transactions (beta)</p>
+                <p style="color:#2563eb; font-weight:500; margin-top:1rem;">⚡ 2,450+ transactions processed (beta)</p>
             </div>
         </div>
 
-        <!-- features renamed under CODE 98 FIFO -->
-        <div id="features" class="section-head">
-            <h2>strict FIFO · reactive rewards</h2>
-            <p>Every payment is a first‑in, first‑out event — no randomness, just provable order.</p>
-        </div>
-        <div class="grid-auto">
-            <div class="fifo-card"><div class="card-icon">🧠</div><h3>pure FIFO core</h3><p>In‑memory queues per amount bucket. Earliest transaction gets served first, always.</p></div>
-            <div class="fifo-card"><div class="card-icon">⚡</div><h3>reward scheduler</h3><p>Cashback or airtime sent back via IntaSend within 200ms. Idempotent, traceable.</p></div>
-            <div class="fifo-card"><div class="card-icon">🧾</div><h3>audit trail</h3><p>Every dequeue is logged. Full visibility for compliance & reconciliation.</p></div>
-            <div class="fifo-card"><div class="card-icon">🔮</div><h3>predictable pricing</h3><p>Flat subscription – unlimited transactions, no per‑ticket fee.</p></div>
+        <!-- features -->
+        <div id="features" class="section-title">
+            <h2>Designed for modern businesses</h2>
+            <p>Connect your Till once, define your rules, and let Code98 handle the rest — instantly, securely.</p>
         </div>
 
-        <!-- pricing renamed CODE98 FIFO plan -->
-        <div id="pricing" class="pricing-dark">
-            <h2 style="font-size:clamp(2rem,5vw,2.8rem);">CODE 98 FIFO subscription</h2>
-            <p style="color:#9db4d6; max-width:700px; margin-bottom:2rem;">One flat rate, unlimited FIFO processing. No surprise overages.</p>
-            <div style="display:flex; flex-wrap:wrap; gap:2.5rem; align-items:center;">
-                <div class="plan-card-modern">
-                    <div style="color:#afc4ff;">📦 business FIFO</div>
-                    <div class="price-large">KES 2,990 <span style="font-size:1rem; color:#839ac2;">/ month</span></div>
-                    <ul style="list-style:none; margin:1.8rem 0; border-top:1px solid #2f4665; padding-top:1.2rem;">
-                        <li style="padding:0.4rem 0;">✅ Unlimited transactions</li>
-                        <li style="padding:0.4rem 0;">✅ FIFO queue engine</li>
-                        <li style="padding:0.4rem 0;">✅ reward rules (cashback/%)</li>
-                        <li style="padding:0.4rem 0;">✅ realtime FIFO dashboard</li>
-                        <li style="padding:0.4rem 0;">✅ webhooks & logs</li>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3>Auto‑reward logic</h3>
+                <p>Set percentage or fixed cashbacks. When a customer pays, the reward is sent back in milliseconds.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Queue management</h3>
+                <p>Intelligent FIFO queues per amount. No randomness – first in, first out, every time.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔐</div>
+                <h3>Compliance ready</h3>
+                <p>Built on IntaSend's PCI‑DSS infrastructure. Full audit trails, encryption, and regulatory alignment.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚙️</div>
+                <h3>Subscription based</h3>
+                <p>Predictable monthly fee. No per‑transaction markups – just one flat rate, unlimited usage.</p>
+            </div>
+        </div>
+
+        <!-- product / subscription preview (key for IntaSend) -->
+        <div id="pricing" class="product-showcase">
+            <h2>Code98 Engagement Suite</h2>
+            <div class="subhead">One integration. Endless possibilities. Currently in private beta – launching to all Kenyan Tills Q3 2026.</div>
+            
+            <div style="display: flex; gap: 2rem; flex-wrap: wrap; align-items: center;">
+                <div class="subscription-plan">
+                    <div class="plan-name">📦 business plan</div>
+                    <div class="plan-price">KES 2,990 <span>/month</span></div>
+                    <ul class="plan-features">
+                        <li>✅ Unlimited transactions</li>
+                        <li>✅ FIFO queue engine</li>
+                        <li>✅ Custom reward rules</li>
+                        <li>✅ Real-time dashboard</li>
+                        <li>✅ API access (webhooks)</li>
                     </ul>
-                    <a class="btn" style="width:100%; background:#2d54d4;" onclick="showModal('comingModal')">Activate FIFO</a>
+                    <a class="btn" style="width:100%; text-align:center; cursor: pointer;" onclick="showComingSoon()">Get started</a>
                 </div>
-                <div style="flex:1;">
-                    <span class="badge-outline">✨ no onboarding fee</span>
-                    <p style="margin-top:1.5rem; color:#b8caf0; font-size:1.2rem;">✔︎ Link your Till in one click<br>✔︎ M‑Pesa (Airtel in Q4)<br>✔︎ pause anytime</p>
+                <div style="flex:1; color:#cbd5e1;">
+                    <div class="pill-badge">✨ no setup fees</div>
+                    <p style="margin-top:1rem; font-size:1.2rem;">✔︎ Connect your existing Till number<br>✔︎ Works with M-Pesa (Airtel/Equitel coming)<br>✔︎ Cancel anytime</p>
                 </div>
             </div>
         </div>
 
-        <!-- contact section with ultra responsive details / same mail+phone -->
-        <div id="contact" class="contact-modern">
-            <h2 style="font-size:clamp(1.8rem,4vw,2.6rem);">talk FIFO with us</h2>
-            <p style="color:#2f405a; max-width:550px; margin-inline:auto;">We're beta testing with Kenyan tills – get direct support.</p>
-            <div class="flex-contact-row">
-                <div class="contact-chip"><span>📧</span> elviskiprono098@gmail.com</div>
-                <div class="contact-chip"><span>📞</span> 0715 365500</div>
-                <div class="contact-chip"><span>📍</span> Kericho / Roret · Nairobi</div>
+        <!-- contact section with UPDATED details -->
+        <div id="contact" class="contact-section">
+            <h2>Let's talk about your business</h2>
+            <p>We're actively onboarding beta testers. Reach out and we'll get back to you within 24 hours.</p>
+            
+            <div class="contact-details">
+                <div class="contact-item">
+                    <span>📧</span>
+                    <span>elviskiprono098@gmail.com</span>
+                </div>
+                <div class="contact-item">
+                    <span>📞</span>
+                    <span>0715365500</span>
+                </div>
+                <div class="contact-item">
+                    <span>📍</span>
+                    <span>Kericho / Roret, Nairobi</span>
+                </div>
             </div>
-            <div class="badge-outline" style="background:#e2ebff; color:#153b6e; border-color:#96b4f0; display:inline-block; margin-top:0.5rem;">🔧 live IntaSend integration · 2026</div>
+            
+            <div class="notice-badge">
+                ⚡ Currently in development · Integrating with IntaSend APIs
+            </div>
         </div>
 
-        <!-- footer (year updated) -->
-        <div class="footer-fluid">
-            <div><strong style="color:#0f2b53;">CODE 98 FIFO</strong> · Kericho · Nairobi<br>© 2026 CODE98. All rights reserved.</div>
-            <div style="display:flex; gap:1.8rem;">
-                <a href="#" style="text-decoration:none; color:#253746;" onclick="showModal('privacyModal')">privacy</a>
-                <a href="#" style="text-decoration:none; color:#253746;" onclick="showModal('termsModal')">terms</a>
+        <!-- footer with UPDATED year -->
+        <div class="footer">
+            <div>
+                <strong>Code98</strong> · Kericho / Roret, Nairobi · Kenya<br>
+                &copy; 2026 Code98. All rights reserved.
+            </div>
+            <div class="contact-line">
+                <span><a href="#" onclick="showPrivacy()">Privacy</a> · <a href="#" onclick="showTerms()">Terms</a></span>
             </div>
         </div>
     </div>
 
-    <!-- modals (all dynamic) -->
-    <div class="modal-overlay" id="signinModal"><div class="modal-glass"><h3 style="font-weight:700;">🔐 developer FIFO</h3><p style="margin:1rem 0;">Dashboard in private beta. Q3 2026 open access.</p><button class="btn btn-outline" style="width:100%;" onclick="hideModals()">close</button></div></div>
-    <div class="modal-overlay" id="comingModal"><div class="modal-glass"><h3>🚀 FIFO coming</h3><p>We'll notify you. Mail elviskiprono098@gmail.com for early slot.</p><button class="btn btn-outline" style="width:100%;" onclick="hideModals()">close</button></div></div>
-    <div class="modal-overlay" id="privacyModal"><div class="modal-glass"><h3>🔏 privacy FIFO</h3><p>No data selling. Full policy at launch.</p><button class="btn btn-outline" style="width:100%;" onclick="hideModals()">close</button></div></div>
-    <div class="modal-overlay" id="termsModal"><div class="modal-glass"><h3>⚖️ terms (dev preview)</h3><p>CODE 98 FIFO terms under construction – ask us directly.</p><button class="btn btn-outline" style="width:100%;" onclick="hideModals()">close</button></div></div>
+    <!-- modal for sign in -->
+    <div class="modal" id="signinModal">
+        <div class="modal-content">
+            <h3>🔐 Developer Access Only</h3>
+            <p>The Code98 dashboard is currently in private development. Beta access opens Q3 2026.</p>
+            <button class="modal-close" onclick="hideModal()">Close</button>
+        </div>
+    </div>
+
+    <!-- modal for coming soon -->
+    <div class="modal" id="comingSoonModal">
+        <div class="modal-content">
+            <h3>🚀 Coming Soon</h3>
+            <p>We're launching in Q3 2026. Leave us a message at elviskiprono098@gmail.com to get early access.</p>
+            <button class="modal-close" onclick="hideModal()">Close</button>
+        </div>
+    </div>
+
+    <!-- modal for privacy -->
+    <div class="modal" id="privacyModal">
+        <div class="modal-content">
+            <h3>📋 Privacy Notice</h3>
+            <p>Code98 is committed to protecting your data. We do not share any customer information with third parties. Full privacy policy available upon launch.</p>
+            <button class="modal-close" onclick="hideModal()">Close</button>
+        </div>
+    </div>
+
+    <!-- modal for terms -->
+    <div class="modal" id="termsModal">
+        <div class="modal-content">
+            <h3>⚖️ Terms of Use</h3>
+            <p>Code98 services are provided under development status. Formal terms and conditions will be published at launch.</p>
+            <button class="modal-close" onclick="hideModal()">Close</button>
+        </div>
+    </div>
 
     <script>
-        // Ultra‑light modal manager
-        function showModal(id) {
-            document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
+        // Modal functions
+        function showSignInModal() {
+            document.getElementById('signinModal').classList.add('active');
         }
-        function hideModals() {
-            document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('active'));
+
+        function showComingSoon() {
+            document.getElementById('comingSoonModal').classList.add('active');
         }
-        // click outside to close
-        window.onclick = (e) => {
-            if (e.target.classList.contains('modal-overlay')) hideModals();
-        };
-        // also keep original smooth nav
-        // no other js needed
+
+        function showPrivacy() {
+            document.getElementById('privacyModal').classList.add('active');
+        }
+
+        function showTerms() {
+            document.getElementById('termsModal').classList.add('active');
+        }
+
+        function hideModal() {
+            document.querySelectorAll('.modal').forEach(modal => {
+                modal.classList.remove('active');
+            });
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                hideModal();
+            }
+        }
     </script>
-    <!-- ensure year is 2026 and modern everything -->
 </body>
 </html>
